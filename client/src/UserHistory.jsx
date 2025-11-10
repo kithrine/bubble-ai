@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { deletePrompt, getAllPrompts } from "./redux/promptSlice"
 import AnimatedList from "./components/AnimatedList"
-import BlurText from "./components/BlurText"
 
 const UserHistory = ({darkMode, setDarkMode}) => {
   const dispatch = useDispatch()

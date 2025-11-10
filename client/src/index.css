@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+/* Preline UI */
+@source "../node_modules/preline/dist/*.js";
+@import "../node_modules/preline/variants.css";
+
+
+/* Plugins */
+@plugin "@tailwindcss/forms";
+@plugin "daisyui" {
+  themes: all;
+}
+
+
 @theme {
   --font-rouge: "Rouge Script", sans-serif;
   --font-baskervville: "Baskervville", sans-serif;
@@ -16,12 +28,15 @@
   --font-quicksand: "Quicksand", sans-serif;
   --font-instrument: "Instrument Sans", sans-serif;
   --font-rubik: "Rubik", sans-serif;
+  --font-rubik-mono: "Rubik Mono One", sans-serif;
   --font-montserrat: "Montserrat", sans-serif;
   --font-quattrocento: "Quattrocento Sans", sans-serif;
   --font-encode: "Encode Sans SC", sans-serif;
   --font-phudu: "Phudu", sans-serif;
   --font-koulen: "Koulen", sans-serif;
   --font-bebas: "Bebas Neue", sans-serif;
+  --font-cherry: "Cherry Bomb One", sans-serif;
+  --font-chango: "Chango", sans-serif;
 }
 
 @theme {

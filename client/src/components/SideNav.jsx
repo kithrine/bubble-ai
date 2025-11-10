@@ -5,7 +5,7 @@ const SideNav = () => {
   return (
     <>
       {/* <!-- Sidebar --> */}
-      <div id="hs-pro-sidebar" class="hs-overlay [--auto-close:md] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-65 hs-overlay-minified:w-13 overflow-hidden hidden fixed inset-y-0 z-60 start-0 bg-white border-e border-gray-200 dark:border-neutral-700 md:block md:translate-x-0 md:end-auto md:bottom-0 dark:bg-neutral-800" role="dialog" tabindex="-1" aria-label="Sidebar">
+      <div id="hs-pro-sidebar" class="hs-overlay [--auto-close:md] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-65 hs-overlay-minified:w-13 overflow-hidden hidden fixed inset-y-0 z-60 start-0 bg-base-200 border-e border-neutral md:block md:translate-x-0 md:end-auto md:bottom-0" role="dialog" tabindex="-1" aria-label="Sidebar">
         <div class="relative flex flex-col h-full max-h-full">
           {/* <!-- Header --> */}
           <header class="py-2.5 px-4 flex justify-between items-center gap-x-2">

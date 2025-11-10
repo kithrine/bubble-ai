@@ -4,29 +4,37 @@ import UserInterface from './UserInterface'
 import UserHistory from './UserHistory'
 import './App.css'
 import SideNav from './components/SideNav'
+import NavbarHeader from './components/NavbarHeader'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [ theme, setTheme ] = useState(localStorage.getItem("theme") || "dark")
+
+  const handleTheme = (t) => {
+    document.body.setAttribute("data-theme", t)
+    setTheme(t)
+    localStorage.setItem("theme", t)
+  }
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setDarkMode(savedTheme === 'dark');
+    // Set theme on refresh
+    if (localStorage.getItem("theme")) {
+      handleTheme(localStorage.getItem("theme"))
     }
-  }, []);
+  }, [])
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-    localStorage.setItem('theme', !darkMode ? 'dark' : 'light');
-  };
+  // const toggleTheme = () => {
+  //   setDarkMode(!darkMode);
+  //   localStorage.setItem('theme', !darkMode ? 'dark' : 'light');
+  // };
 
 
   return (
     <>
-    <SideNav />
+      <SideNav />
       <Routes>
-        <Route path="/" element={<UserInterface darkMode={darkMode} setDarkMode={setDarkMode} />} />
-        <Route path="/history" element={<UserHistory darkMode={darkMode} setDarkMode={setDarkMode} />} />
+        <Route path="/" element={<UserInterface handleTheme={handleTheme} theme={theme} />} />
+        <Route path="/history" element={<UserHistory  />} />
       </Routes>
     </>
   )
