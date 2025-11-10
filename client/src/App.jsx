@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-    <SideNav toggleTheme={toggleTheme} darkMode={darkMode} setDarkMode={setDarkMode} />
+    <SideNav />
       <Routes>
         <Route path="/" element={<UserInterface darkMode={darkMode} setDarkMode={setDarkMode} />} />
         <Route path="/history" element={<UserHistory darkMode={darkMode} setDarkMode={setDarkMode} />} />
