@@ -1,4 +1,4 @@
-# Bubble AI
+# Ollama UI
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin http://104.131.171.220/ktensfeldt/bubble-ai.git
+git remote add origin http://104.131.171.220/ktensfeldt/ollama-ui.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](http://104.131.171.220/ktensfeldt/bubble-ai/-/settings/integrations)
+- [ ] [Set up project integrations](http://104.131.171.220/ktensfeldt/ollama-ui/-/settings/integrations)
 
 ## Collaborate with your team
 

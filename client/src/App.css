@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #35c0ad;
+  /* background: linear-gradient(to right, orange, hotpink, yellow); */
+  will-change: transform;
+}
+
+.chevron-pattern {
+  background: linear-gradient(135deg, #616161 25%, transparent 25%) -50px 0,
+    linear-gradient(225deg, #333 25%, transparent 25%) -50px 0,
+    linear-gradient(315deg, #616161 25%, transparent 25%),
+    linear-gradient(45deg, #333 25%, transparent 25%);
+  /* background-size: 20px 20px; */
+  background-size: 105%;
+  background-color: #35c0ad;
+}
