@@ -61,8 +61,11 @@ const NavbarHeader = ({ theme, handleTheme }) => {
           <div class="flex items-center sm:gap-x-1.5">
             <ul className="menu menu-horizontal px-1">
               <li>
-                <div className="dropdown dropdown-bottom dropdown-end">
-                  <div tabIndex={0} role="button" className="flex gap-x-1 items-center"><ColorBlock /><svg width="12px" height="12px" class="mt-px hidden size-2 fill-current opacity-60 sm:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path></svg></div>
+                <div className="dropdown dropdown-bottom dropdown-end px-1.5">
+                  <div tabIndex={0} role="button" className="flex gap-x-1 items-center">
+                    <ColorBlock />
+                    <svg width="12px" height="12px" class="mt-px hidden size-2 fill-current opacity-60 sm:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048"><path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path></svg>
+                  </div>
                   <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-1 w-56 p-2 shadow-sm top-x h-[30.5rem] max-h-[calc(100vh-8.6rem)] overflow-y-auto">
                     <ThemesSelect />
                   </ul>

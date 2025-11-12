@@ -1,14 +1,14 @@
-import promptModel from "./promptModel.js"
+import chatModel from "./chatModel.js"
 import axios from "axios"
 
-const promptCreate =  async (req, res) => {
+const chatCreate =  async (req, res) => {
   const { prompt, model } = req.body
-  console.log("prompt,model", prompt, model)
+  console.log("prompt, model", prompt, model)
   // Validation
   if (
     (!prompt || prompt == "")
   ) {
-    res.status(500).json({ "message": "Prompt input not valid."})
+    res.status(500).json({ "message": "Chat input not valid."})
   } 
   else {
     
@@ -28,11 +28,11 @@ const promptCreate =  async (req, res) => {
     }
     console.log("responseText", responseText)
 
-    const promptResponse = await promptModel.create({ prompt, model, answer: responseText })
-    console.log("promptResponse", promptResponse)
+    const chatResponse = await chatModel.create({ prompt, model, answer: responseText })
+    console.log("chatResponse", chatResponse)
 
-    res.status(200).json({ "success": true, "message": "Prompt created.", prompt: promptResponse })
+    res.status(200).json({ "success": true, "message": "Chat created.", chat: chatResponse })
   }
 }
 
-export default promptCreate
+export default chatCreate

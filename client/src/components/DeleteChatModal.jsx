@@ -1,6 +1,6 @@
 
 
-const DeletePromptModal = ({ darkMode, handleDeletePrompt, setShowPromptDeleteModal, promptToDelete }) => {
+const DeleteChatModal = ({ darkMode, handleDeleteChat, setShowChatDeleteModal, chatToDelete }) => {
   
   return (
 <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -19,19 +19,19 @@ const DeletePromptModal = ({ darkMode, handleDeletePrompt, setShowPromptDeleteMo
               </svg>
             </div>
             <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-              <h3 className={`text-base font-semibold ${darkMode ? "text-gray-100" : "text-gray-900"}`} id="modal-title">Delete Prompt</h3>
+              <h3 className={`text-base font-semibold ${darkMode ? "text-gray-100" : "text-gray-900"}`} id="modal-title">Delete Chat</h3>
               <div className="mt-2">
-                <p className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-500"}`}>Are you sure you want to delete this prompt? All of your data will be permanently removed. This action cannot be undone.</p>
+                <p className={`text-sm ${darkMode ? "text-gray-300" : "text-gray-500"}`}>Are you sure you want to delete this chat? All of your data will be permanently removed. This action cannot be undone.</p>
               </div>
             </div>
           </div>
         </div>
         <div className={`${darkMode ? "bg-gray-900" : "bg-gray-50"} px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6`}>
           <button 
-          onClick={() => handleDeletePrompt(promptToDelete.id)}
+          onClick={() => handleDeleteChat(chatToDelete.id)}
           type="button" className={`inline-flex w-full justify-center rounded-md ${darkMode ? "bg-gray-700 hover:bg-gray-600" : "bg-red-600 hover:bg-red-500 text-white "} px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto`}>Delete</button>
           <button 
-          onClick={() => setShowPromptDeleteModal(false)}
+          onClick={() => setShowChatDeleteModal(false)}
           type="button" 
           className={`mt-3 inline-flex w-full justify-center rounded-md ${darkMode ? "bg-gray-200 hover:bg-gray-300" : "bg-white hover:bg-gray-100"} px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300  sm:mt-0 sm:w-auto`}>Cancel</button>
         </div>
@@ -42,6 +42,6 @@ const DeletePromptModal = ({ darkMode, handleDeletePrompt, setShowPromptDeleteMo
   )
 }
 
-export default DeletePromptModal
+export default DeleteChatModal
 
 

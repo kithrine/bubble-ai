@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSelector} from "react-redux"
 import Markdown from 'react-markdown';
-import DeletePromptModal from './DeletePromptModal';
+import DeleteChatModal from './DeleteChatModal';
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick,}) => {
   const ref = useRef(null);
@@ -33,13 +33,13 @@ const AnimatedList = ({
   displayScrollbar = true,
   initialSelectedIndex = -1,
   darkMode,
-  showPromptDeleteModal,
-  setShowPromptDeleteModal,
-  handleDeletePrompt,
-  promptToDelete,
-  setPromptToDelete
+  showChatDeleteModal,
+  setShowChatDeleteModal,
+  handleDeleteChat,
+  chatToDelete,
+  setChatToDelete
 }) => {
-  const { prompts } = useSelector((state) => state.prompt)
+  const { chats } = useSelector((state) => state.chat)
 
   const listRef = useRef(null);
   const [selectedIndex, setSelectedIndex] = useState(initialSelectedIndex);
@@ -52,7 +52,7 @@ const AnimatedList = ({
     if (historyEnd) {
       historyEnd.scrollIntoView({ behavior: "smooth" })
     }
-  }, [prompts])
+  }, [chats])
 
   const handleScroll = (e) => {
     const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -127,7 +127,7 @@ const AnimatedList = ({
         //   scrollbarColor: '#222 #060606',
         // }}
       >
-        {prompts.map((prompt, index) => (
+        {chats.map((chat, index) => (
           <AnimatedItem
             key={index}
             delay={0.1}
@@ -142,7 +142,7 @@ const AnimatedList = ({
           >
             <div className={`${darkMode ? "bg-gray-950 hover:bg-gray-800" : "bg-gray-100 hover:bg-gray-200"} rounded-lg drop-shadow-md ${itemClassName} transition duration-300 ease-in-out`}>
               <div className={`px-3 py-2`}>
-                <p className='font-montserrat'>{new Date(prompt.date).toLocaleString("en-US", {
+                <p className='font-montserrat'>{new Date(chat.date).toLocaleString("en-US", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -153,11 +153,11 @@ const AnimatedList = ({
                 </p>
               </div>
               <div className={`flex justify-between px-3 py-1 ${darkMode ? "bg-gray-700" : "bg-gray-300"}`}>
-                <p className={`${darkMode ? "text-white" : "text-gray-800"} m-0 font-palanquin tracking-wider font-bold text-lg`}>{prompt.prompt}</p>
+                <p className={`${darkMode ? "text-white" : "text-gray-800"} m-0 font-palanquin tracking-wider font-bold text-lg`}>{chat.prompt}</p>
                 <span className={`font-encode text-lg font-bold ${darkMode ? "text-white" : "text-gray-700"} min-w-[105px]`}>
-                  {prompt.model}
+                  {chat.model}
                   <button
-                    onClick={() => {setPromptToDelete(prompt); setShowPromptDeleteModal(true)}}
+                    onClick={() => {setChatToDelete(chat); setShowChatDeleteModal(true)}}
                     id="delete-contact-message"
                     className="mx-4 cursor-pointer inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
                     type="button"
@@ -168,7 +168,7 @@ const AnimatedList = ({
                 
               </div>
               <div className='p-3'>
-                <p className={`font-instrument text-lg line-clamp-[20]`}>{prompt.answer.length > 0 && <Markdown>{prompt.answer}</Markdown>}</p>
+                <p className={`font-instrument text-lg line-clamp-[20]`}>{chat.answer.length > 0 && <Markdown>{chat.answer}</Markdown>}</p>
               </div>
             </div>
           </AnimatedItem>
@@ -188,7 +188,7 @@ const AnimatedList = ({
         </>
       )}
 
-    {showPromptDeleteModal && <DeletePromptModal darkMode={darkMode} setShowPromptDeleteModal={setShowPromptDeleteModal} handleDeletePrompt={handleDeletePrompt} promptToDelete={promptToDelete}/>}
+    {showChatDeleteModal && <DeleteChatModal darkMode={darkMode} setShowChatDeleteModal={setShowChatDeleteModal} handleDeleteChat={handleDeleteChat} chatToDelete={chatToDelete}/>}
     </div>
   );
 };
