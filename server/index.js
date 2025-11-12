@@ -2,7 +2,7 @@ import "dotenv/config"
 import express from "express"
 import cors from "cors"
 import mongoose from "mongoose"
-import promptIndex from "./prompt/promptIndex.js"
+import chatIndex from "./chat/chatIndex.js"
 
 const app = express()
 app.use(express.json())
@@ -20,7 +20,7 @@ app.all("/", (req, res) => {
   })
 })
 
-app.use("/prompt", promptIndex)
+app.use("/chat", chatIndex)
 
 try {
   const mongoURL = process.env.MONGODB_URL || ""

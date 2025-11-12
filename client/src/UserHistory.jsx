@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { deletePrompt, getAllPrompts } from "./redux/promptSlice"
+import { deleteChat, getAllChats } from "./redux/chatSlice"
 import AnimatedList from "./components/AnimatedList"
 
 const UserHistory = ({darkMode, setDarkMode}) => {
   const dispatch = useDispatch()
-  const { prompt } = useSelector((state) => state.prompt)
-  const [ promptToDelete, setPromptToDelete ] = useState({})
-  const [ showPromptDeleteModal, setShowPromptDeleteModal ] = useState(false)
+  const { chat } = useSelector((state) => state.chat)
+  const [ chatToDelete, setChatToDelete ] = useState({})
+  const [ showChatDeleteModal, setShowChatDeleteModal ] = useState(false)
 
   useEffect(() => {
-    dispatch(getAllPrompts())
-    console.log("getAllPrompts", getAllPrompts)
+    dispatch(getAllChats())
+    console.log("getAllChats", getAllChats)
   }, [])
 
-  const handleDeletePrompt = (id) => {
-    dispatch(deletePrompt(id))
-    setShowPromptDeleteModal(false)
-    dispatch(getAllPrompts())
+  const handleDeleteChat = (id) => {
+    dispatch(deleteChat(id))
+    setShowChatDeleteModal(false)
+    dispatch(getAllChats())
   }
 
   return (
@@ -60,8 +60,8 @@ const UserHistory = ({darkMode, setDarkMode}) => {
           ) : (
             <>
               
-              <div>{prompt.prompt}</div>
-              {prompt.answer.length > 0 && <Markdown>{prompt.answer}</Markdown>}
+              <div>{chat.prompt}</div>
+              {chat.answer.length > 0 && <Markdown>{chat.answer}</Markdown>}
             </>
           )}
         </div> */}
@@ -72,11 +72,11 @@ const UserHistory = ({darkMode, setDarkMode}) => {
           enableArrowNavigation={true}
           displayScrollbar={true}
           darkMode={darkMode}
-          showPromptDeleteModal={showPromptDeleteModal}
-          setShowPromptDeleteModal={setShowPromptDeleteModal}
-          handleDeletePrompt={handleDeletePrompt}
-          promptToDelete={promptToDelete}
-          setPromptToDelete={setPromptToDelete}
+          showChatDeleteModal={showChatDeleteModal}
+          setShowChatDeleteModal={setShowChatDeleteModal}
+          handleDeleteChat={handleDeleteChat}
+          chatToDelete={chatToDelete}
+          setChatToDelete={setChatToDelete}
         />
        
         
@@ -88,19 +88,19 @@ const UserHistory = ({darkMode, setDarkMode}) => {
 export default UserHistory
 
 {
-  /* {prompts.map((prompt, index) => (
+  /* {chats.map((chat, index) => (
   <div key={index}>
-    <div>{prompt.prompt}</div>
+    <div>{chat.prompt}</div>
     <div>
       {" "}
-      {new Date(prompt.date).toLocaleString("en-US", {
+      {new Date(chat.date).toLocaleString("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric"
       })}
     </div>
     <div>
-      <Markdown>{prompt.answer}</Markdown>
+      <Markdown>{chat.answer}</Markdown>
     </div>
   </div>
 ))} */

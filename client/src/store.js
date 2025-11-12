@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import promptReducer from "./redux/promptSlice"
+import chatReducer from "./redux/chatSlice"
 
 export const store = configureStore({
   reducer: {
-    prompt: promptReducer
+    chat: chatReducer
   },
 });
