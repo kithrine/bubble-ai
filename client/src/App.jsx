@@ -3,8 +3,8 @@ import { Route, Routes } from 'react-router'
 import UserInterface from './UserInterface'
 import UserHistory from './UserHistory'
 import './App.css'
-import SideNav from './components/SideNav'
-import NavbarHeader from './components/NavbarHeader'
+import SideNav from './components/navigation/SideNav'
+import NavbarHeader from './components/navigation/NavbarHeader'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
