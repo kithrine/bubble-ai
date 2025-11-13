@@ -9,7 +9,10 @@ const chatService = {
     return await axios.post(
       `${import.meta.env.VITE_NODE_SERVER_URL}/chat`,
       chatForm,
-      { headers: { "Content-Type": "application/json" } }
+      { 
+        headers: { "Content-Type": "application/json" },
+        responseType: "stream" 
+      }
     );
   },
   deleteChat: async (id) => {
