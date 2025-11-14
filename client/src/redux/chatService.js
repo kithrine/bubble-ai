@@ -11,7 +11,7 @@ const chatService = {
       chatForm,
       { 
         headers: { "Content-Type": "application/json" },
-        responseType: "stream" 
+        // responseType: "stream" 
       }
     );
   },

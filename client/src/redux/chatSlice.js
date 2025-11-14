@@ -3,6 +3,7 @@ import chatService from "./chatService";
 
 const initialState = {
   loading: false,
+  status: "",
   success: false,
   chat: {
     prompt: "",
@@ -65,6 +66,7 @@ export const chatSlice = createSlice({
         console.log("chatSlice addChat.pending", action.payload);
         state.loading = true;
         state.success = false;
+        state.status = "loading"
       })
       .addCase(addChat.fulfilled, (state, action) => {
         console.log("chatSlice addChat.fulfilled", action.payload);
@@ -72,11 +74,14 @@ export const chatSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.chat = action.payload.chat
+        state.chats = [...state.chats, action.payload.chat]
+        state.status = "success"
       })
       .addCase(addChat.rejected, (state, action) => {
         console.log("chatSlice addChat.rejected", action.payload);
         state.loading = false;
         state.success = false;
+        state.status = "failed"
       })
 
       // Delete chat
