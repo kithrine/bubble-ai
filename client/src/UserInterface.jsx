@@ -10,7 +10,6 @@ import NavbarHeader from "./components/navigation/NavbarHeader"
 import chatService from "./redux/chatService"
 import GPTIcon from "./icons/GPTIcon"
 import ModelSelectBox from "./components/inputs/ModelSelectBox"
-import GPTIconSize8 from "./icons/GPTIconSize8"
 
 const UserInterface = ({ handleTheme, theme }) => {
   const dispatch = useDispatch()
@@ -79,7 +78,7 @@ const UserInterface = ({ handleTheme, theme }) => {
 
         <div class="h-full flex flex-col justify-between w-full mx-auto px-4 sm:px-6 lg:px-8 pt-20">
 
-          <div className="min-h-[75vh]">
+          <div className="max-h-[75vh]">
             <div className="mb-5 flex flex-col">
               <div className="w-full bg-base-100 max-h-[72vh] overflow-y-auto rounded-lg border-base-300 border pb-4">
                 {chats.map((chat, index) => (
@@ -125,14 +124,7 @@ const UserInterface = ({ handleTheme, theme }) => {
                       {chat.answer !== "" && (
                         <>
                         {/* Chat Model Icons */}
-                          {chat.model === "deepseek-r1" || chat.model === "deepseek-coder-v2" ? <img src={new URL("./icons/DeepseekPng.png", import.meta.url).href} className="size-8" alt="..." /> : chat.model === "gemma2" ? <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          className="bi bi-robot w-8 h-8 text-neutral-600 dark:text-neutral-200"
-                          viewBox="0 0 16 16">
-                          <path d="M6 12.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M3 8.062C3 6.76 4.235 5.765 5.53 5.886a26.6 26.6 0 0 0 4.94 0C11.765 5.765 13 6.76 13 8.062v1.157a.93.93 0 0 1-.765.935c-.845.147-2.34.346-4.235.346s-3.39-.2-4.235-.346A.93.93 0 0 1 3 9.219zm4.542-.827a.25.25 0 0 0-.217.068l-.92.9a25 25 0 0 1-1.871-.183.25.25 0 0 0-.068.495c.55.076 1.232.149 2.02.193a.25.25 0 0 0 .189-.071l.754-.736.847 1.71a.25.25 0 0 0 .404.062l.932-.97a25 25 0 0 0 1.922-.188.25.25 0 0 0-.068-.495c-.538.074-1.207.145-1.98.189a.25.25 0 0 0-.166.076l-.754.785-.842-1.7a.25.25 0 0 0-.182-.135" />
-                          <path d="M8.5 1.866a1 1 0 1 0-1 0V3h-2A4.5 4.5 0 0 0 1 7.5V8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1v-.5A4.5 4.5 0 0 0 10.5 3h-2zM14 7.5V13a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.5A3.5 3.5 0 0 1 5.5 4h5A3.5 3.5 0 0 1 14 7.5" />
-                          </svg> : chat.model === "gpt-oss" ? <GPTIconSize8 /> : chat.model === "mistral" ? <img src={new URL("./icons/Mistral.png", import.meta.url).href} className="size-8" alt="..." /> : <svg
+                          {chat.model === "deepseek-r1" || chat.model === "deepseek-coder-v2" ? <img src={new URL("./icons/DeepseekPng.png", import.meta.url).href} className="size-8" alt="..." /> : chat.model === "gemma2" ? <img src={new URL("./icons/Gemma.png", import.meta.url).href} className="size-8" alt="..." /> : chat.model === "gpt-oss" ? <GPTIcon size={8} /> : chat.model === "mistral" ? <img src={new URL("./icons/Mistral.png", import.meta.url).href} className="size-8" alt="..." /> : <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="currentColor"
                           className="bi bi-robot w-8 h-8 text-neutral-600 dark:text-neutral-200"
@@ -167,10 +159,19 @@ const UserInterface = ({ handleTheme, theme }) => {
                     </div>
                   </div>
                 ))}
-                <div id="historyEnd" />
+
+                {chatStatus === "loading" && (
+                  <div className="bg-secondary/30 w-full p-3">
+                    <div className="flex justify-self-center gap-x-2 items-center text-accent-content">
+                      <span>Generating response</span>
+                      <span className="loading loading-dots loading-sm"></span>
+                    </div>
+                  </div>
+                )}
+
                 {/* {finalResponse.length > 0 && (
                   <Markdown>{finalResponse}</Markdown>
-                )} */}
+                  )} */}
                 <div id="historyEnd" />
               </div>
             </div>
@@ -186,7 +187,12 @@ const UserInterface = ({ handleTheme, theme }) => {
                   onChange={(e) =>
                     setChatForm({ ...chatForm, prompt: e.target.value })
                   } 
-                  id="prompt" class="max-h-36 mt-2 pt-4 pb-2 ps-2 pe-4 block w-full bg-transparent border-transparent resize-none text-gray-800 placeholder-gray-500 focus:outline-hidden focus:border-transparent focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:text-neutral-200 dark:placeholder-neutral-500 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" placeholder="Ask anything..."  data-hs-textarea-auto-height />
+                  id="prompt" 
+                  // max-h-36 was old class and the textarea grew as user typed long prompt. I liked it. But it kept growing to the bottom, not the top like I would prefer
+                  class="max-h-20 mt-2 pt-4 pb-2 ps-2 pe-4 block w-full bg-transparent border-transparent resize-none placeholder-base-content/50 focus:outline-hidden focus:border-transparent focus:ring-transparent disabled:opacity-50 disabled:pointer-events-none dark:bg-transparent dark:text-neutral-200 dark:placeholder-neutral-500 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500" 
+                  placeholder="Ask anything..." 
+                  data-hs-textarea-auto-height
+                />
 
                 <div class="pt-2 flex justify-between items-center gap-x-1">
                   {/* <!-- Button Group --> */}
@@ -280,14 +286,13 @@ const UserInterface = ({ handleTheme, theme }) => {
                         </option>
                         <option value="gemma2">
                           <span className="flex items-center gap-1">
-                            {/* <img src={new URL("./icons/DeepseekPng.png", import.meta.url).href} className="size-6" alt="..." /> */}
-                            <GPTIcon />
+                            <img src={new URL("./icons/Gemma.png", import.meta.url).href} className="size-6" alt="..." />
                             <span>Gemma 2</span>
                           </span>
                         </option>
                         <option value="gpt-oss">
                           <span className="flex items-center gap-1">
-                            <GPTIcon />
+                            <GPTIcon size={6} />
                             <span>GPT-OSS</span>
                           </span>
                         </option>
@@ -310,7 +315,7 @@ const UserInterface = ({ handleTheme, theme }) => {
 
                     {/* <!-- Send Button --> */}
                     {chatStatus !== "loading" ? (
-                    <button type="submit" class="btn btn-square btn-primary">
+                    <button type="submit" class="btn btn-square btn-primary" disabled={!chatForm.prompt.trim()}>
                       <span class="sr-only">Send</span>
                       <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
                     </button>

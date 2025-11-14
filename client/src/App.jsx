@@ -31,11 +31,13 @@ function App() {
 
   return (
     <>
-      <SideNav />
-      <Routes>
-        <Route path="/" element={<UserInterface handleTheme={handleTheme} theme={theme} />} />
-        <Route path="/history" element={<UserHistory  />} />
-      </Routes>
+      <div className="font-rubik">
+        <SideNav />
+        <Routes>
+          <Route path="/" element={<UserInterface handleTheme={handleTheme} theme={theme} />} />
+          <Route path="/history" element={<UserHistory  />} />
+        </Routes>
+      </div>
     </>
   )
 }

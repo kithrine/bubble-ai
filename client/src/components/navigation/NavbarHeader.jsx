@@ -40,17 +40,17 @@ const NavbarHeader = ({ theme, handleTheme }) => {
           {/* <!-- Button Group --> */}
           <div class="flex items-center sm:gap-x-1.5 truncate">
             {/* <!-- Sidebar Toggle --> */}
-            <button type="button" class="md:hidden flex justify-center items-center flex-none gap-x-3 size-9 text-sm text-gray-500 rounded-lg hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="dialog" aria-expanded="true" aria-controls="hs-pro-sidebar" aria-label="Minify navigation" data-hs-overlay="#hs-pro-sidebar">
+            <button type="button" class="md:hidden flex justify-center items-center flex-none gap-x-3 size-9 text-sm text-gray-500 rounded-lg hover:bg-base-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-hidden focus:bg-base-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 cursor-pointer" aria-haspopup="dialog" aria-expanded="true" aria-controls="hs-pro-sidebar" aria-label="Minify navigation" data-hs-overlay="#hs-pro-sidebar">
               <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M15 3v18"></path><path d="m8 9 3 3-3 3"></path></svg>
               <span class="sr-only">Sidebar Toggle</span>
             </button>
             {/* <!-- End Sidebar Toggle --> */}
 
-            <span class="truncate font-medium text-sm sm:text-base">
-              <span className="font-chango uppercase">Bubble</span> AI
+            <span class="truncate font-medium text-sm sm:text-base flex gap-x-1 items-center">
+              <span className="font-chango uppercase text-lg text-primary">Bubble</span><span className="font-lexend tracking-tighter text-xs font-bold">AI</span>
             </span>
 
-            <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 text-sm whitespace-nowrap text-cyan-700 rounded-lg hover:bg-cyan-700/10 focus:outline-hidden focus:bg-cyan-700/10 disabled:opacity-50 disabled:pointer-events-none dark:text-cyan-500 dark:hover:bg-cyan-700/20 dark:focus:bg-cyan-700/20" href="#">
+            <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 text-sm whitespace-nowrap text-accent rounded-lg hover:bg-base-100/70 focus:outline-hidden focus:bg-cyan-700/10 disabled:opacity-50 disabled:pointer-events-none dark:text-cyan-500 dark:hover:bg-cyan-700/20 dark:focus:bg-cyan-700/20" href="#">
               <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
               Get Plus
             </a>
@@ -142,7 +142,15 @@ const NavbarHeader = ({ theme, handleTheme }) => {
               {/* <!-- Account Dropdown --> */}
               <div class="hs-dropdown inline-flex [--strategy:absolute] [--auto-close:inside] [--placement:bottom-right] relative text-start">
                 <button id="hs-dnad" type="button" class="p-0.5 inline-flex shrink-0 items-center gap-x-3 text-start rounded-full hover:bg-gray-200 focus:outline-hidden focus:bg-gray-200 dark:hover:bg-neutral-800 dark:hover:text-neutral-200 dark:focus:bg-neutral-800 dark:focus:text-neutral-200 dark:text-neutral-500" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
-                  <img class="shrink-0 size-8 rounded-full" src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80" alt="Avatar" />
+                  {/* <img class="shrink-0 size-8 rounded-full" src="https://images.unsplash.com/photo-1659482633369-9fe69af50bfb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=3&w=320&h=320&q=80" alt="Avatar" /> */}
+                  <svg
+                    className="size-8"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                  </svg>
                 </button>
 
                 {/* <!-- Account Dropdown --> */}
