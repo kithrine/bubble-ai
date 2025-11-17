@@ -6,7 +6,7 @@ const conversationSchema = new Schema({
   name: String,
   modelInstructions: String,
   dateCreated: { type: Date, default: Date.now },
-  pinned: Boolean,
+  favorited: Boolean,
   archived: Boolean,
   chats: [
     {
@@ -14,8 +14,8 @@ const conversationSchema = new Schema({
       model: String,
       date: { type: Date, default: Date.now },
       answer: String,
-      archived: Boolean,
-      favorited: Boolean
+      favorited: Boolean,
+      archived: Boolean
     }
   ]
 });
@@ -25,6 +25,9 @@ export default conversationSchema;
 //* STRUCTURE OF THE CONVERSATION SCHEMA
 // name: String,
 // modelInstructions: String,
+// dateCreated: { type: Date, default: Date.now },
+// favorited: Boolean,
+// archived: Boolean,
 // chats: [
 //   {
 //     prompt: String,
@@ -41,6 +44,9 @@ export default conversationSchema;
 //   {
 //     name: String,
 //     modelInstructions: String,
+//     dateCreated: { type: Date, default: Date.now },
+//     favorited: Boolean,
+//     archived: Boolean,
 //     chats: [
 //       chat: {
 //         prompt: String,
