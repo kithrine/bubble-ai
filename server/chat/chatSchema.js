@@ -10,4 +10,3 @@ const chatSchema = new Schema({
 });
 
 export default chatSchema;
-

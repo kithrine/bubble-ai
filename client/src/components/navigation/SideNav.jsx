@@ -101,7 +101,7 @@ const SideNav = () => {
               <ul class="flex flex-col gap-y-0.5">
                 <li>
                   <div class="relative group">
-                    <a class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary" href="chat-details.html">
+                    <a class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary" href="chat-details.html">
                       <span class="truncate">Kit's Main Chat</span>
                     </a>
 
