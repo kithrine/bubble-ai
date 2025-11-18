@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { deleteChat, getAllChats } from "./redux/chatSlice"
-import AnimatedList from "./components/AnimatedList"
+import AnimatedList from "./components/react-bits+motion/AnimatedList"
 
 const UserHistory = ({darkMode, setDarkMode}) => {
   const dispatch = useDispatch()

@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
-import UserInterface from './UserInterface'
+import InterfaceLayout from './layouts/InterfaceLayout'
 import UserHistory from './UserHistory'
 import './App.css'
 import SideNav from './components/navigation/SideNav'
 import NavbarHeader from './components/navigation/NavbarHeader'
+import HomeScreen from './pages/HomeScreen'
+import CreateConversationForm from './pages/CreateConversationForm'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -31,13 +33,17 @@ function App() {
 
   return (
     <>
-      <div className="font-rubik">
+      <main class="md:ps-65 md:hs-overlay-minified:ps-13 transition-all duration-300 min-h-full bg-base-100 font-rubik">
+
+        <NavbarHeader handleTheme={handleTheme} theme={theme} />
         <SideNav />
         <Routes>
-          <Route path="/" element={<UserInterface handleTheme={handleTheme} theme={theme} />} />
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="/create-conversation" element={<CreateConversationForm />} />
+          <Route path="/chat" element={<InterfaceLayout handleTheme={handleTheme} theme={theme} />} />
           <Route path="/history" element={<UserHistory  />} />
         </Routes>
-      </div>
+      </main>
     </>
   )
 }

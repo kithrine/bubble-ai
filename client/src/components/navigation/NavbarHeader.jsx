@@ -47,7 +47,7 @@ const NavbarHeader = ({ theme, handleTheme }) => {
             {/* <!-- End Sidebar Toggle --> */}
 
             <span class="truncate font-medium text-sm sm:text-base flex gap-x-1 items-center">
-              <span className="font-chango uppercase text-lg text-primary">Bubble</span><span className="font-lexend tracking-tighter text-xs font-bold">AI</span>
+              <span className="font-chango text-lg text-primary font-bold">Bubble</span><span className="font-lexend tracking-tighter text-xs font-bold">AI</span>
             </span>
 
             <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 text-sm whitespace-nowrap text-accent rounded-lg hover:bg-base-100/70 focus:outline-hidden focus:bg-cyan-700/10 disabled:opacity-50 disabled:pointer-events-none dark:text-cyan-500 dark:hover:bg-cyan-700/20 dark:focus:bg-cyan-700/20" href="#">
