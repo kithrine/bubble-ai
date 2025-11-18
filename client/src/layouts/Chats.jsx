@@ -36,11 +36,35 @@ const Chats = () => {
     dispatch(addChat(chatForm))
     setChatForm({ ...chatForm, prompt: ""})
     setFinalResponse(chat.answer)
+
+    //! NEW
+    // const response = await chatService.addChat(chatForm)
+  
+    // const stream = response.data;
+
+    // for await (const chunk of stream) {
+    //   console.log(chunk);
+    //   setFinalResponse(fr => `${fr}${chunk}`)
+    // }
+
+    //! AI SLOP??
+    // e.preventDefault(); // Prevent form submission if needed
+    // const response = await chatService.addChat(chatForm);
+    // console.log("response", response)
+    // const reader = response.data.getReader();
+    // const decoder = new TextDecoder('utf-8');
+    // let buffer = '';
+
+    // while (true) {
+    //   const { value, done } = await reader.read();
+    //   if (done) break;
+    //   buffer += decoder.decode(value, { stream: true });
+    //   setFinalResponse((prev) => prev + decoder.decode(value)); // Update state in real-time
+    // }
   }
   return (
     <>
-      {/* <!-- Content --> */}
-      <div class="relative h-full bg-base-100">
+      
         <div class="max-w-full pb-10 lg:pb-14 mx-auto min-h-full bg-base-300">
           
           {chats.map((chat, index) => (
@@ -297,7 +321,7 @@ const Chats = () => {
           </form>
           {/* <!-- End Textarea --> */}
         </div>
-      </div>
+
       {/* <!-- End Content --> */}
     </>
   )

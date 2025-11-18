@@ -2,7 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useSelector} from "react-redux"
 import Markdown from 'react-markdown';
-import DeleteChatModal from './DeleteChatModal';
+import DeleteChatModal from '../DeleteChatModal';
 
 const AnimatedItem = ({ children, delay = 0, index, onMouseEnter, onClick,}) => {
   const ref = useRef(null);
