@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const conversationSchema = new Schema({
-  name: String,
+  title: String,
   modelInstructions: String,
   dateCreated: { type: Date, default: Date.now },
   favorited: Boolean,
@@ -23,7 +23,7 @@ const conversationSchema = new Schema({
 export default conversationSchema;
 
 //* STRUCTURE OF THE CONVERSATION SCHEMA
-// name: String,
+// title: String,
 // modelInstructions: String,
 // dateCreated: { type: Date, default: Date.now },
 // favorited: Boolean,
@@ -42,7 +42,7 @@ export default conversationSchema;
 //* OVERALL STRUCTURE??
 // conversations: [
 //   {
-//     name: String,
+//     title: String,
 //     modelInstructions: String,
 //     dateCreated: { type: Date, default: Date.now },
 //     favorited: Boolean,

@@ -1,6 +1,26 @@
-import React from 'react'
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addConversation } from "../redux/conversationSlice"
 
 const CreateConversationForm = () => {
+  const [ conversationCreateForm, setConversationCreateForm ] = useState({
+    title: "",
+    modelInstructions: "",
+    dateCreated: new Date(),
+    favorited: false,
+    archived: false,
+  })
+
+  const dispatch = useDispatch()
+
+  const handleConversationCreate = (e) => {
+    e.preventDefault()
+    if (conversationCreateForm.title === "") {
+      setConversationCreateForm.title("Untitled")
+    }
+    // Validation? 
+    dispatch(addConversation(conversationCreateForm))
+  }
   return (
     <>
       <div className="pt-16 min-h-screen">
@@ -18,11 +38,11 @@ const CreateConversationForm = () => {
 
             <div class="mt-12">
               {/* <!-- Form --> */}
-              <form>
+              <form onSubmit={handleConversationCreate}>
                 <div class="grid gap-4 lg:gap-6">
                   <div>
                     <label for="convo-title" class="block mb-2 text-sm font-medium">Title</label>
-                    <input type="text" name="convo-title" autocomplete="title" class="input py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none" />
+                    <input value={conversationCreateForm.title} onChange={(e) => setConversationCreateForm({ ...conversationCreateForm, title: e.target.value })} type="text" name="convo-title" autocomplete="title" class="input py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none" />
                   </div>
 
                   {/* <!-- 2 Smaller Inputs --> */}
@@ -41,7 +61,7 @@ const CreateConversationForm = () => {
 
                   <div>
                     <label for="model-instructions" class="block mb-2 text-sm font-medium">Model Instructions</label>
-                    <textarea id="model-instructions" name="model-instructions" rows="12" class="textarea py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none" />
+                    <textarea value={conversationCreateForm.modelInstructions} onChange={(e) => setConversationCreateForm({ ...conversationCreateForm, modelInstructions: e.target.value })} id="model-instructions" name="model-instructions" rows="12" class="textarea py-2.5 sm:py-3 px-4 block w-full rounded-lg sm:text-sm disabled:opacity-50 disabled:pointer-events-none" />
                   </div>
                 </div>
                 {/* <!-- End Grid --> */}
