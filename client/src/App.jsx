@@ -7,6 +7,7 @@ import SideNav from './components/navigation/SideNav'
 import NavbarHeader from './components/navigation/NavbarHeader'
 import HomeScreen from './pages/HomeScreen'
 import CreateConversationForm from './pages/CreateConversationForm'
+import ConversationDetail from './pages/ConversationDetail'
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -40,8 +41,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/create-conversation" element={<CreateConversationForm />} />
+          <Route path="/conversation/:id" element={<ConversationDetail />} />
           <Route path="/chat" element={<InterfaceLayout handleTheme={handleTheme} theme={theme} />} />
+
           <Route path="/history" element={<UserHistory  />} />
+          {/* Do this. Make a PageNotFound component */}
+          {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </main>
     </>

@@ -38,11 +38,17 @@ export const getAllConversations = createAsyncThunk("conversation/getAll", async
 });
 
 export const getConversationInfo = createAsyncThunk("conversation/getConvoInfo", async () => {
-  console.log("redux getConversationInfo");
+  // console.log("redux getConversationInfo");
   const response = await conversationService.getConvoInfo();
-  console.log("redux getConversationInfo response", response);
+  // console.log("redux getConversationInfo response", response);
   return response.data;
 });
+
+export const getOneConversation = createAsyncThunk("conversation/getOne", async (id) => {
+  console.log("redux getOneConversation id", id)
+  const response = await conversationService.getOneConvo(id)
+  return response.data
+})
 
 export const deleteConversation = createAsyncThunk("conversation/delete", async (id) => {
   const response = await conversationService.deleteConversation(id);
@@ -60,6 +66,29 @@ export const conversationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      // Add Conversation
+      .addCase(addConversation.pending, (state, action) => {
+        // console.log("conversationSlice addConversation.pending", action.payload);
+        state.loading = true;
+        state.success = false;
+        state.status = "loading"
+      })
+      .addCase(addConversation.fulfilled, (state, action) => {
+        // console.log("conversationSlice addConversation.fulfilled", action.payload);
+        // console.log(action.payload.conversation);
+        state.loading = false;
+        state.success = true;
+        state.conversation = action.payload.conversation
+        // state.conversations = [...state.conversations, action.payload.conversation]
+        state.status = "success"
+      })
+      .addCase(addConversation.rejected, (state, action) => {
+        // console.log("conversationSlice addConversation.rejected", action.payload);
+        state.loading = false;
+        state.success = false;
+        state.status = "failed"
+      })
+
       // Get All Conversations
       .addCase(getAllConversations.pending, (state, action) => {
         console.log("conversationSlice getAllConversations.pending", action.payload);
@@ -81,44 +110,40 @@ export const conversationSlice = createSlice({
 
       // Get Only Info for Conversations
       .addCase(getConversationInfo.pending, (state, action) => {
-        console.log("conversationSlice getConversationInfo.pending", action.payload);
+        // console.log("conversationSlice getConversationInfo.pending", action.payload);
         state.loading = true;
         state.success = false;
       })
       .addCase(getConversationInfo.fulfilled, (state, action) => {
-        console.log("conversationSlice getConversationInfo.fulfilled", action.payload);
-        console.log(action.payload.conversations);
+        // console.log("conversationSlice getConversationInfo.fulfilled", action.payload);
+        // console.log(action.payload.conversations);
         state.loading = false;
         state.conversations = action.payload.conversations;
         state.success = true;
       })
       .addCase(getConversationInfo.rejected, (state, action) => {
-        console.log("conversationSlice getConversationInfo.rejected", action.payload);
+        // console.log("conversationSlice getConversationInfo.rejected", action.payload);
         state.loading = false;
         state.success = false;
       })
 
-      // Add Conversation
-      .addCase(addConversation.pending, (state, action) => {
-        console.log("conversationSlice addConversation.pending", action.payload);
+      // Get One Conversation
+      .addCase(getOneConversation.pending, (state, action) => {
+        console.log("conversationSlice getOneConversation.pending", action.payload);
         state.loading = true;
         state.success = false;
-        state.status = "loading"
       })
-      .addCase(addConversation.fulfilled, (state, action) => {
-        console.log("conversationSlice addConversation.fulfilled", action.payload);
-        console.log(action.payload.conversation);
+      .addCase(getOneConversation.fulfilled, (state, action) => {
+        console.log("conversationSlice getOneConversation.fulfilled", action.payload);
+        console.log(action.payload);
         state.loading = false;
+        state.conversation = action.payload.conversation;
         state.success = true;
-        state.conversation = action.payload.conversation
-        // state.conversations = [...state.conversations, action.payload.conversation]
-        state.status = "success"
       })
-      .addCase(addConversation.rejected, (state, action) => {
-        console.log("conversationSlice addConversation.rejected", action.payload);
+      .addCase(getOneConversation.rejected, (state, action) => {
+        console.log("conversationSlice getOneConversation.rejected", action.payload);
         state.loading = false;
         state.success = false;
-        state.status = "failed"
       })
 
       // Delete conversation
