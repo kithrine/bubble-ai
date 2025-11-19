@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const conversationService = {
-
   addConversation: async (conversationCreateForm) => {
     console.log("addConversation REDUX SERVICE conversationCreateForm", conversationCreateForm)
     return await axios.post(
@@ -19,13 +18,16 @@ const conversationService = {
   getConvoInfo: async () => {
     return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/conversation/info`)
   },
+  getOneConvo: async (id) => {
+    console.log("convo service id getOne id", id)
+    return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/conversation/id/${id}`)
+  },
   deleteConversation: async (id) => {
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/conversation/${id}`,
       { headers: { "Content-Type": "application/json" } }
     );
   },
-
 };
 
 export default conversationService;

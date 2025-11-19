@@ -1,12 +1,14 @@
 import { useEffect } from "react"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
-import { getConversationInfo } from "../../redux/conversationSlice"
+import { getConversationInfo, getOneConversation } from "../../redux/conversationSlice"
+
 
 const SideNav = () => {
-  const { conversations } = useSelector((state) => state.conversation)
+  const { conversations, conversation } = useSelector((state) => state.conversation)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getConversationInfo());
@@ -112,9 +114,11 @@ const SideNav = () => {
                 {conversations.map((conversation) => (
                   <li>
                     <div class="relative group">
-                      <a class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary" href="chat-details.html">
+                    {/* onClick={() => {navigate(`/conversation/${conversation.id}`); dispatch(getOneConversation(conversation.id))}} */}
+                    {/* Link to={`/conversation/${conversation.id}`} */}
+                      <div onClick={() => {navigate(`/conversation/${conversation.id}`); dispatch(getOneConversation(conversation.id))}} class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary">
                         <span class="truncate">{conversation.title}</span>
-                      </a>
+                      </div>
 
                       <div class="absolute top-1/2 end-0 z-1 -translate-y-1/2 group-hover:opacity-100 opacity-0 transition-opacity duration-300">
                         {/* <!-- More Dropdown --> */}

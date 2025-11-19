@@ -1,6 +1,6 @@
-import NavbarHeader from "../components/navigation/NavbarHeader"
 import Chats from "./Chats"
 
+//! NOT USING ANYMORE. EVENTUALLY DELETE?
 const InterfaceLayout = () => {
   return (
     <>
