@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { Route, Routes } from 'react-router'
-import InterfaceLayout from './layouts/InterfaceLayout'
 import UserHistory from './UserHistory'
 import './App.css'
 import SideNav from './components/navigation/SideNav'
@@ -42,7 +41,6 @@ function App() {
           <Route path="/" element={<HomeScreen />} />
           <Route path="/create-conversation" element={<CreateConversationForm />} />
           <Route path="/conversation/:id" element={<ConversationDetail />} />
-          <Route path="/chat" element={<InterfaceLayout handleTheme={handleTheme} theme={theme} />} />
 
           <Route path="/history" element={<UserHistory  />} />
           {/* Do this. Make a PageNotFound component */}
