@@ -1,6 +1,8 @@
-import { Link } from "react-router"
+import { Link, useParams } from "react-router"
 
 const NavbarHeader = ({ theme, handleTheme }) => {
+
+  const { id } = useParams()
 
   const ColorBlock = ({ t }) => {
     return (
@@ -32,10 +34,12 @@ const NavbarHeader = ({ theme, handleTheme }) => {
     )
   }
 
+  console.log(window.location.pathname)
+
   return (
     <>
       {/* <!-- ========== HEADER ========== --> */}
-      <header class="md:ms-65 xl:hs-overlay-layout-open:me-96 md:hs-overlay-minified:ms-13 transition-all duration-300 fixed top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-48 md:z-61 bg-base-300 py-2.5">
+      <header class="md:ms-65 xl:hs-overlay-layout-open:me-96 md:hs-overlay-minified:ms-13 transition-all duration-300 fixed top-0 start-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-48 md:z-61 bg-base-300 py-2.5 flex-col">
         <nav class="px-4 sm:px-5.5 flex basis-full justify-between items-center w-full mx-auto">
           {/* <!-- Button Group --> */}
           <div class="flex items-center sm:gap-x-1.5 truncate">
@@ -47,7 +51,9 @@ const NavbarHeader = ({ theme, handleTheme }) => {
             {/* <!-- End Sidebar Toggle --> */}
 
             <span class="truncate font-medium text-sm sm:text-base flex gap-x-1 items-center">
-              <span className="font-chango text-lg text-primary font-bold">Bubble</span><span className="font-lexend tracking-tighter text-xs font-bold">AI</span>
+              <Link to="/">
+                <span className="font-chango text-lg text-primary font-bold">Bubble</span><span className="font-lexend tracking-tighter text-xs font-bold">AI</span>
+              </Link>
             </span>
 
             <a class="flex justify-center items-center gap-x-1.5 py-2 px-2.5 text-sm whitespace-nowrap text-accent rounded-lg hover:bg-base-100/70 focus:outline-hidden focus:bg-cyan-700/10 disabled:opacity-50 disabled:pointer-events-none dark:text-cyan-500 dark:hover:bg-cyan-700/20 dark:focus:bg-cyan-700/20" href="#">
@@ -211,6 +217,28 @@ const NavbarHeader = ({ theme, handleTheme }) => {
           </div>
           {/* <!-- End Button Group --> */}
         </nav>
+
+        {/* <nav class="bg-neutral-secondary-soft border-y border-default border-default">
+          <div class="max-w-screen-xl px-4 py-3 mx-auto">
+              <div class="flex items-center">
+                  <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm">
+                      <li>
+                          <a href="#" class="text-heading hover:underline" aria-current="page">Home</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-heading hover:underline">Company</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-heading hover:underline">Team</a>
+                      </li>
+                      <li>
+                          <a href="#" class="text-heading hover:underline">Features</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+        </nav> */}
+
       </header>
       {/* <!-- ========== END HEADER ========== --> */}
     </>
