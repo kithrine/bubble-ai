@@ -24,7 +24,7 @@ const SideNav = () => {
             <div class="-ms-2 flex items-center gap-x-1">
               <div class="md:hs-overlay-minified:hidden">
                 <a class="shrink-0 inline-flex justify-center items-center size-9 rounded-lg text-xl inline-block font-semibold hover:bg-base-100 focus:outline-hidden focus:bg-base-100 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" href="@@href" aria-label="Preline">
-                  <h1 className="font-chango text-2xl text-primary font-light">B</h1>
+                  <Link to="/" className="font-chango text-2xl text-primary font-light">B</Link>
                   {/* <svg class="shrink-0 size-5 text-cyan-700 dark:text-cyan-400" width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.0835 3.23358C9.88316 3.23358 3.23548 9.8771 3.23548 18.0723V35.5832H0.583496V18.0723C0.583496 8.41337 8.41851 0.583252 18.0835 0.583252C27.7485 0.583252 35.5835 8.41337 35.5835 18.0723C35.5835 27.7312 27.7485 35.5614 18.0835 35.5614H16.7357V32.911H18.0835C26.2838 32.911 32.9315 26.2675 32.9315 18.0723C32.9315 9.8771 26.2838 3.23358 18.0835 3.23358Z" fill="currentColor"/>
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M18.0833 8.62162C12.8852 8.62162 8.62666 12.9245 8.62666 18.2879V35.5833H5.97468V18.2879C5.97468 11.5105 11.3713 5.97129 18.0833 5.97129C24.7954 5.97129 30.192 11.5105 30.192 18.2879C30.192 25.0653 24.7954 30.6045 18.0833 30.6045H16.7355V27.9542H18.0833C23.2815 27.9542 27.54 23.6513 27.54 18.2879C27.54 12.9245 23.2815 8.62162 18.0833 8.62162Z" fill="currentColor"/>
@@ -67,12 +67,12 @@ const SideNav = () => {
             {/* <!-- List --> */}
             <ul class="flex flex-col gap-y-0.5">
               <li>
-                <a class="group relative w-full flex items-center gap-1 py-1.5 px-2.5 relative text-sm hover:text-secondary-content hover:bg-secondary rounded-lg before:absolute before:inset-y-0 before:-start-2 before:rounded-e-full before:w-1 before:h-full focus:outline-hidden focus:bg-gray-100/70" href="index.html">
+                <Link to="/create-conversation" class="group relative w-full flex items-center gap-1 py-1.5 px-2.5 relative text-sm hover:text-secondary-content hover:bg-secondary rounded-lg before:absolute before:inset-y-0 before:-start-2 before:rounded-e-full before:w-1 before:h-full focus:outline-hidden focus:bg-secondary focus:text-primary-content">
                   <span class="-ms-[5px] flex shrink-0 justify-center items-center size-6">
                     <svg class="shrink-0 size-4 group-hover:scale-115 group-focus:scale-115 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
                   </span>
-                  <span class="truncate hs-overlay-minified:opacity-0 transition-opacity duration-300">New chat</span>
-                </a>
+                  <span class="truncate hs-overlay-minified:opacity-0 transition-opacity duration-300">New conversation</span>
+                </Link>
               </li>
               <li>
                 <button type="button" class="group w-full flex items-center gap-1 py-1.5 px-2.5 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content hover:bg-secondary cursor-pointer" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-pro-dnsm" data-hs-overlay="#hs-pro-dnsm">

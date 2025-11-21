@@ -30,7 +30,7 @@ const Chats = () => {
   return (
     <>
       
-        <div class="max-w-full pb-10 lg:pb-14 mx-auto min-h-[74vh] bg-base-300">
+        <div class="max-w-full pb-7 lg:pb-10 mx-auto min-h-[74vh] bg-base-300">
           
           {conversation.chats.map((chat, index) => (
             <div className="flex flex-col">
@@ -111,14 +111,6 @@ const Chats = () => {
             </div>
           ))}
 
-          {chatStatus === "loading" && (
-            <div className="bg-secondary/30 w-full p-3">
-              <div className="flex justify-self-center gap-x-2 items-center text-accent-content">
-                <span>Generating response</span>
-                <span className="loading loading-dots loading-sm"></span>
-              </div>
-            </div>
-          )}
           <div id="historyEnd" />
 
         </div>

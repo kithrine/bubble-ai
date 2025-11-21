@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import GPTIcon from '../../icons/GPTIcon'
+import { createChat } from '../../redux/conversationSlice'
+import { useParams } from 'react-router'
+import LoadingBanner from './LoadingBanner'
 
 const ChatTextarea = () => {
+  const { conversation } = useSelector((state) => state.conversation)
   const chatStatus = useSelector((state) => state.conversation.status)
   const [chatForm, setChatForm] = useState({
     prompt: "",
@@ -12,6 +16,7 @@ const ChatTextarea = () => {
     archived: false
   })
 
+  const { id } = useParams()
   const dispatch = useDispatch()
 
   const handleAIQuestion = async (e) => {
@@ -51,9 +56,11 @@ const ChatTextarea = () => {
 
   return (
     <>
-      <div class="max-w-full mx-auto sticky bottom-0 z-10 bg-base-100 border-t border-gray-200 pt-2 sm:pt-4 px-2 sm:px-3 lg:px-4 pb-4 dark:bg-neutral-900 dark:border-neutral-700">
+      <div class="max-w-full mx-auto sticky bottom-0 z-10 bg-base-100">
+        <LoadingBanner />
+      
         {/* <!-- Textarea --> */}
-        <form onSubmit={handleAIQuestion}>
+        <form onSubmit={handleAIQuestion} className="pt-2 sm:pt-4 px-2 sm:px-3 lg:px-4 pb-4 border-t border-gray-200">
           <div class="bg-base-100 border border-base-300 rounded-2xl shadow-xs shadow-base-300">
             <label for="prompt" class="sr-only">Ask anything...</label>
 
@@ -150,19 +157,19 @@ const ChatTextarea = () => {
                       <option disabled={true}>Select Model</option>
                       <option value="deepseek-r1" className="flex items-center gap-1">
                         {/* <span className="flex items-center gap-1"> */}
-                          <img src={new URL("./icons/DeepseekPng.png", import.meta.url).href} className="size-6" alt="..." />
+                          <img src={new URL("../../icons/DeepseekPng.png", import.meta.url).href} className="size-6" alt="..." />
                           DeepSeek R1
                         {/* </span> */}
                       </option>
                       <option value="deepseek-coder-v2">
                         <span className="flex items-center gap-1">
-                          <img src={new URL("./icons/DeepseekPng.png", import.meta.url).href} className="size-6" alt="..." />
+                          <img src={new URL("../../icons/DeepseekPng.png", import.meta.url).href} className="size-6" alt="..." />
                           <span>deepseek-coder-v2</span>
                         </span>
                       </option>
                       <option value="gemma2">
                         <span className="flex items-center gap-1">
-                          <img src={new URL("./icons/Gemma.png", import.meta.url).href} className="size-6" alt="..." />
+                          <img src={new URL("../../icons/Gemma.png", import.meta.url).href} className="size-6" alt="..." />
                           <span>Gemma 2</span>
                         </span>
                       </option>
@@ -174,7 +181,7 @@ const ChatTextarea = () => {
                       </option>
                       <option value="mistral">
                         <span className="flex items-center gap-1">
-                          <img src={new URL("./icons/Mistral.png", import.meta.url).href} className="size-6" alt="..." />
+                          <img src={new URL("../../icons/Mistral.png", import.meta.url).href} className="size-6" alt="..." />
                           <span>Mistral</span>
                         </span>
                       </option>
