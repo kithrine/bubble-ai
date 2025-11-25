@@ -3,8 +3,9 @@ import ollama from "ollama"
 import axios from "axios"
 
 const chatCreate =  async (req, res) => {
-  const { prompt, model } = req.body
+  const { prompt, model, modelInstructions } = req.body
   console.log("prompt, model", prompt, model)
+  // console.log("modelInstructions BACKEND CHATCREATE", modelInstructions)
   // Validation
   if (
     (!prompt || prompt == "")

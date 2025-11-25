@@ -3,8 +3,13 @@ import axios from "axios"
 
 const chatCreate =  async (req, res) => {
   const { id } = req.params
-  const { prompt, model, date, favorited, archived } = req.body;
+  const { prompt, model, date, favorited, archived, modelInstructions } = req.body;
+  console.log("REQ.BODY", req.body)
+  console.log("REQ.BODY.PROMPT", req.body.prompt)
+  console.log("REQ.BODY.MODEL", req.body.model)
   console.log("prompt, model", prompt, model)
+  console.log("modelInstructions BACKEND CHATCREATE", modelInstructions)
+
 
   // Validation
   if (!prompt || prompt == "") {
@@ -17,7 +22,7 @@ const chatCreate =  async (req, res) => {
     console.log("conversation.chats", conversation.chats)
 
     //old
-    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt, model })
+    const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt: modelInstructions + prompt, model })
     console.log("response", response)
 
     let responseText = ""

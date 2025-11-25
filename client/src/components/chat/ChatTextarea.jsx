@@ -9,6 +9,7 @@ const ChatTextarea = () => {
   const { conversation } = useSelector((state) => state.conversation)
   const chatStatus = useSelector((state) => state.conversation.status)
   const [chatForm, setChatForm] = useState({
+    modelInstructions: "",
     prompt: "",
     model: "gemma2",
     date: new Date(),
@@ -16,14 +17,19 @@ const ChatTextarea = () => {
     archived: false
   })
 
+  // console.log("chatForm conversation.modelInstructions", conversation.modelInstructions)
+  // console.log("conversation", conversation)
+
   const { id } = useParams()
   const dispatch = useDispatch()
-
+4
   const handleAIQuestion = async (e) => {
     //! OLD
     e.preventDefault()
     console.log("chatForm", chatForm)
-    dispatch(createChat({ id, chatForm }))
+    // const conversationModelInstructions = conversation.modelInstructions
+    const conversationChatForm = { ...chatForm, modelInstructions: conversation.modelInstructions }
+    dispatch(createChat({ id, conversationChatForm }))
     setChatForm({ ...chatForm, prompt: ""})
     console.log("conversation", conversation)
     // setFinalResponse(conversation.chat.answer)
