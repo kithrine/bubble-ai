@@ -3,7 +3,7 @@ import axios from "axios"
 
 const chatCreate =  async (req, res) => {
   const { id } = req.params
-  const { prompt, model, date, favorited, archived, modelInstructions } = req.body;
+  const { modelInstructions, prompt, model, date, favorited, archived } = req.body;
   console.log("REQ.BODY", req.body)
   console.log("REQ.BODY.PROMPT", req.body.prompt)
   console.log("REQ.BODY.MODEL", req.body.model)
@@ -17,9 +17,9 @@ const chatCreate =  async (req, res) => {
   } 
   else {
     // new
-    const conversation = await conversationModel.findOne({ _id: id })
-    console.log("conversation", conversation)
-    console.log("conversation.chats", conversation.chats)
+    // const conversation = await conversationModel.findOne({ _id: id })
+    // console.log("conversation", conversation)
+    // console.log("conversation.chats", conversation.chats)
 
     //old
     const response = await axios.post(`${process.env.OLLAMA_API_URL}`, { prompt: modelInstructions + prompt, model })
