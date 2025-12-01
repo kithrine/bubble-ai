@@ -9,7 +9,7 @@ const conversationCreate =  async (req, res) => {
   } 
   else {
     const conversation = await conversationModel.create({ title, modelInstructions, favorited, archived })
-    console.log("conversation", conversation)
+    // console.log("conversation", conversation)
 
     res.status(200).json({ success: true, "message": "Conversation created.", conversation: conversation })
   }

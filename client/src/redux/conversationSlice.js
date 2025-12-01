@@ -55,8 +55,8 @@ export const deleteConversation = createAsyncThunk("conversation/delete", async 
   return response.data;
 });
 
-export const createChat = createAsyncThunk("conversation/chatCreate", async ({ id, chatForm }) => {
-  const response = await conversationService.addChat(id, chatForm);
+export const createChat = createAsyncThunk("conversation/chatCreate", async ({ id, conversationChatForm }) => {
+  const response = await conversationService.addChat(id, conversationChatForm);
   return response.data;
 })
 

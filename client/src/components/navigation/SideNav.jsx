@@ -11,8 +11,8 @@ const SideNav = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getConversationInfo());
-  }, []);
+    dispatch(getConversationInfo())
+  }, [])
 
   return (
     <>
@@ -114,7 +114,7 @@ const SideNav = () => {
                 {conversations.map((conversation) => (
                   <li>
                     <div class="relative group">
-                    {/* onClick={() => {navigate(`/conversation/${conversation.id}`); dispatch(getOneConversation(conversation.id))}} */}
+                    {/* onClick={() => {dispatch(getOneConversation(conversation.id));navigate(`/conversation/${conversation.id}`)}} */}
                     {/* Link to={`/conversation/${conversation.id}`} */}
                       <div onClick={() => {navigate(`/conversation/${conversation.id}`); dispatch(getOneConversation(conversation.id))}} class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary">
                         <span class="truncate">{conversation.title}</span>

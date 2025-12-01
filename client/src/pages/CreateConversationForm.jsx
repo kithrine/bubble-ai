@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { addConversation } from "../redux/conversationSlice"
+import { addConversation, getConversationInfo } from "../redux/conversationSlice"
 
 const CreateConversationForm = () => {
   const [ conversationCreateForm, setConversationCreateForm ] = useState({
@@ -20,6 +20,7 @@ const CreateConversationForm = () => {
     }
     // Validation? 
     dispatch(addConversation(conversationCreateForm))
+    dispatch(getConversationInfo());
   }
   return (
     <>

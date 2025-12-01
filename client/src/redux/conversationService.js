@@ -25,11 +25,11 @@ const conversationService = {
       { headers: { "Content-Type": "application/json" } }
     );
   },
-  addChat: async (id, chatForm) => {
-    console.log("addChat Redux Service id, chatForm", id, chatForm)
+  addChat: async (id, conversationChatForm) => {
+    console.log("addChat Redux Service id, conversationChatForm", id, conversationChatForm)
     return await axios.put(
       `${import.meta.env.VITE_NODE_SERVER_URL}/conversation/${id}/chat`,
-      chatForm
+      conversationChatForm
     )
   },
 };
