@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOneConversation } from '../redux/conversationSlice'
@@ -12,6 +12,7 @@ const ConversationDetail = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log("ConversationDetail useEffect")
     dispatch(getOneConversation(id))
   }, [])
   
@@ -25,9 +26,9 @@ const ConversationDetail = () => {
                   <span className="">{conversation.title}</span>
                   <span className="">•</span>
                   {/* <button className="btn btn-secondary mix-blend-hard-light h-8">Show Model Instructions</button> */}
-                  <button className="btn btn-secondary mix-blend-hard-light h-8" onClick={()=>document.getElementById('model-instructions-modal').showModal()}>Show Model Instructions</button>
+                  <button className="btn btn-secondary mix-blend-hard-light h-8" onClick={() => document.getElementById('model-instructions-modal').showModal()}>Show Model Instructions</button>
 
-                  <ModelInstructionsModal conversation={conversation} />
+                  <ModelInstructionsModal modelInstructions={conversation.modelInstructions} />
                   {/* mix-blend-screen best so far? **WITH THE bg-base-100 instead of btn-secondary*/}
                   {/* best with btn-secondary: mix-blend-darken, mix-blend-hard-light,  */}
                   {/* <button className="btn btn-ghost btn-secondary py-1">Show Model Instructions</button> */}
