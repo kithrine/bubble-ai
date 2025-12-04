@@ -1,4 +1,4 @@
-import conversationModel from "./conversationModel";
+import conversationModel from "./conversationModel.js";
 
 const conversationUpdate = async (req, res) => {
   const { id } = req.params
