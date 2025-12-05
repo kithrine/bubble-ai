@@ -1,27 +1,44 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
+import { getOneConversation} from '../../redux/conversationSlice';
 import { GrEdit } from "react-icons/gr";
 import ModelInstructionsModal from '../modals/ModelInstructionsModal'
-import { getConversationInfo, getOneConversation } from '../../redux/conversationSlice';
-import { useParams } from 'react-router';
 
 const ConvoTitleBanner = () => {
   const { conversation } = useSelector((state) => state.conversation)
   const { id } = useParams()
   const [ editConversation, setEditConversation ] = useState("")
   const [ isEditing, setIsEditing ] = useState(false)
-  const [ inputWidth, setInputWidth ] = useState(conversation.title.length * 8 + "px"); // Initial width
-  console.log("conversation.title.length", conversation.title.length)
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getOneConversation(id))
-  }, [])
+  }, [id])
   
+  useEffect(() => {
+    if (isEditing) {
+      // Focus the input element when editing starts
+      inputRef.current.focus();
+    } else {
+      // Reset focus to document body or any other default element when editing stops
+      document.activeElement.blur();
+    }
+  }, [isEditing]);
+  
+  useEffect(() => {
+    if (!conversation?.editing) {
+      setIsEditing(false); // Reset editing state if the conversation is no longer being edited
+    }
+  }, [conversation]);
+  
+  const maxWidth = 500; // Maximum width of the input
+  // Calculate the initial width based on the length of the text
+  let finalWidth = Math.min(editConversation.length * 7.6, maxWidth);
 
   const showTitleEditInput = () => {
-    console.log("WORKING!", conversation.title)
     // Start editing
     setIsEditing(true)
     setEditConversation(conversation.title)
@@ -30,14 +47,6 @@ const ConvoTitleBanner = () => {
   const handleTitleUpdate = () => {
     
   }
-
-  const handleInputChange = (e) => {
-    const newWidth = e.target.value.length * 8 + 'px'; // Adjust the multiplier as needed to get a good starting point
-    if (newWidth <= '500px') { // Maximum width set to 500px in this example
-      setInputWidth(newWidth);
-    }
-    setEditConversation(e.target.value)
-  };
 
   return (
     <>
@@ -52,10 +61,11 @@ const ConvoTitleBanner = () => {
                     <input
                       type="text"
                       value={editConversation}
-                      onChange={handleInputChange}
-                      // onFocus={(e) => {if (!editConversation) inputWidth = conversation.title.length * 8 + "px"}}
-                      style={{ width: inputWidth }} // Use inline style to override Tailwind CSS classes
-                      className="input focus:outline-none border-primary-content text-base-content min-w-50 h-8"
+                      onChange={(e) => setEditConversation(e.target.value)}
+                      onFocus={(e) => { if (!editConversation) finalWidth = Math.min(finalWidth, maxWidth) }} // Adjust width when input is focused
+                      // style={{ width: `${finalWidth}px`}} 
+                      ref={inputRef}
+                      className={`input focus:outline-none border-primary-content text-base-content min-w-50 h-8 w-[${finalWidth}px]`}
                     />
                   </div>
                   }
