@@ -20,7 +20,6 @@ const CreateConversationForm = () => {
     }
     // Validation? 
     dispatch(addConversation(conversationCreateForm))
-    dispatch(getConversationInfo());
   }
   return (
     <>

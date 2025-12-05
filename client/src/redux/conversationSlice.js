@@ -89,8 +89,7 @@ export const conversationSlice = createSlice({
         // console.log(action.payload.conversation);
         state.loading = false;
         state.success = true;
-        state.conversation = action.payload.conversation
-        // state.conversations = [...state.conversations, action.payload.conversation]
+        state.conversations = [...state.conversations, action.payload.conversation]
         state.status = "success"
       })
       .addCase(addConversation.rejected, (state, action) => {
@@ -167,6 +166,7 @@ export const conversationSlice = createSlice({
         console.log("conversationSlice updateConversation.fulfilled", action.payload);
         state.loading = false;
         state.conversation = action.payload.conversation;
+        state.conversations = state.conversations.map(conversation => conversation.id === action.payload.conversation.id ? action.payload.conversation : conversation)
         state.success = true;
       })
       .addCase(updateConversation.rejected, (state, action) => {

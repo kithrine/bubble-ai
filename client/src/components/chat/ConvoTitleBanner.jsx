@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux'
-import { getOneConversation} from '../../redux/conversationSlice';
+import { getOneConversation, updateConversation} from '../../redux/conversationSlice';
 import { GrEdit } from "react-icons/gr";
+import { GiCheckMark } from "react-icons/gi";
 import ModelInstructionsModal from '../modals/ModelInstructionsModal'
 
 const ConvoTitleBanner = () => {
   const { conversation } = useSelector((state) => state.conversation)
   const { id } = useParams()
-  const [ editConversation, setEditConversation ] = useState("")
+  const [ editTitle, setEditTitle ] = useState("")
   const [ isEditing, setIsEditing ] = useState(false)
   const inputRef = useRef(null);
 
@@ -36,16 +37,22 @@ const ConvoTitleBanner = () => {
   
   const maxWidth = 500; // Maximum width of the input
   // Calculate the initial width based on the length of the text
-  let finalWidth = Math.min(editConversation.length * 7.6, maxWidth);
+  let finalWidth = Math.min(editTitle.length * 7.6, maxWidth);
 
   const showTitleEditInput = () => {
     // Start editing
     setIsEditing(true)
-    setEditConversation(conversation.title)
+    setEditTitle(conversation.title)
   }
 
   const handleTitleUpdate = () => {
-    
+    console.log("somethang")
+    if (editTitle === "") {
+      setEditTitle("Untitled")
+      dispatch(updateConversation({id, editConversation: {...conversation, title: editTitle}}))
+    } else {
+      dispatch(updateConversation({id, editConversation: {...conversation, title: editTitle}}))
+    }
   }
 
   return (
@@ -60,21 +67,29 @@ const ConvoTitleBanner = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      value={editConversation}
-                      onChange={(e) => setEditConversation(e.target.value)}
-                      onFocus={(e) => { if (!editConversation) finalWidth = Math.min(finalWidth, maxWidth) }} // Adjust width when input is focused
-                      // style={{ width: `${finalWidth}px`}} 
+                      value={editTitle}
+                      onChange={(e) => setEditTitle(e.target.value)}
+                      onFocus={(e) => { if (!editTitle) finalWidth = Math.min(finalWidth, maxWidth) }} // Adjust width when input is focused
+                      style={{ width: `${finalWidth}px`}} 
                       ref={inputRef}
-                      className={`input focus:outline-none border-primary-content text-base-content min-w-50 h-8 w-[${finalWidth}px]`}
+                      className="input focus:outline-none border-primary-content text-base-content min-w-50 h-8"
                     />
                   </div>
                   }
                   <span>
-                    <div className="tooltip tooltip-bottom" data-tip="Edit title">
-                      <button onClick={() => showTitleEditInput()} className="btn btn-circle btn-secondary size-8">
-                      <GrEdit size={15} />
-                      </button>
-                    </div>
+                    {!isEditing ?
+                      <div className="tooltip tooltip-bottom" data-tip="Edit title">
+                        <button onClick={() => showTitleEditInput()} className="btn btn-circle btn-secondary size-8">
+                        <GrEdit size={15} />
+                        </button>
+                      </div>
+                    :
+                    <div className="tooltip tooltip-bottom" data-tip="Save">
+                        <button onClick={() => handleTitleUpdate()} className="btn btn-circle btn-secondary size-8">
+                        <GiCheckMark size={15} />
+                        </button>
+                      </div>
+                    }
                   </span>
                 </div>
                 <span className="">•</span>
