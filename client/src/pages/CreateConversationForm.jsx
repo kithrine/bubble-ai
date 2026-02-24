@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addConversation, getConversationInfo } from "../redux/conversationSlice"
+import { useNavigate } from "react-router"
 
 const CreateConversationForm = () => {
   const [ conversationCreateForm, setConversationCreateForm ] = useState({
@@ -12,6 +13,7 @@ const CreateConversationForm = () => {
   })
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleConversationCreate = (e) => {
     e.preventDefault()
@@ -19,7 +21,13 @@ const CreateConversationForm = () => {
       setConversationCreateForm.title("Untitled")
     }
     // Validation? 
-    dispatch(addConversation(conversationCreateForm))
+    dispatch(addConversation(conversationCreateForm)).then((action) => {
+      if (addConversation.fulfilled.match(action)) {
+        // Assuming the backend returns the newly created conversation's ID in the response
+        const newConversationId = action.payload.conversation.id;
+        navigate(`/conversation/${newConversationId}`); // Redirect to the new conversation's page
+      }
+    })
   }
   return (
     <>
