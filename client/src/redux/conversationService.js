@@ -19,6 +19,13 @@ const conversationService = {
     // console.log("convo service id getOne id", id)
     return await axios.get(`${import.meta.env.VITE_NODE_SERVER_URL}/conversation/id/${id}`)
   },
+  updateConvo: async (id, editConversation) => {
+    return await axios.put(
+      `${import.meta.env.VITE_NODE_SERVER_URL}/conversation/${id}`,
+      editConversation,
+      // { headers: { "Content-Type": "application/json" } }
+    );
+  },
   deleteConversation: async (id) => {
     return await axios.delete(
       `${import.meta.env.VITE_NODE_SERVER_URL}/conversation/${id}`,

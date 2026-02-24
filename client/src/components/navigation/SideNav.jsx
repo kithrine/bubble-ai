@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { Link, useNavigate } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
-import { getConversationInfo, getOneConversation } from "../../redux/conversationSlice"
+import { getConversationInfo, getOneConversation} from "../../redux/conversationSlice"
 
 
 const SideNav = () => {
@@ -116,7 +116,7 @@ const SideNav = () => {
                     <div class="relative group">
                     {/* onClick={() => {dispatch(getOneConversation(conversation.id));navigate(`/conversation/${conversation.id}`)}} */}
                     {/* Link to={`/conversation/${conversation.id}`} */}
-                      <div onClick={() => {navigate(`/conversation/${conversation.id}`); dispatch(getOneConversation(conversation.id))}} class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary">
+                      <div onClick={() => {navigate(`/conversation/${conversation.id}`)}} class="w-full flex items-center gap-x-2 py-2 ps-2.5 pe-8 text-sm truncate rounded-lg focus:outline-hidden hover:text-secondary-content group-hover:text-secondary-content hover:bg-secondary cursor-pointer group-hover:bg-secondary">
                         <span class="truncate">{conversation.title}</span>
                       </div>
 

@@ -50,6 +50,12 @@ export const getOneConversation = createAsyncThunk("conversation/getOne", async 
   return response.data
 })
 
+export const updateConversation = createAsyncThunk("conversation/update", async ({id, editConversation}) => {
+  const response = await conversationService.updateConvo(id, editConversation)
+  console.log("redux updateConversation slice response", response);
+  return response.data
+})
+
 export const deleteConversation = createAsyncThunk("conversation/delete", async (id) => {
   const response = await conversationService.deleteConversation(id);
   return response.data;
@@ -83,8 +89,7 @@ export const conversationSlice = createSlice({
         // console.log(action.payload.conversation);
         state.loading = false;
         state.success = true;
-        state.conversation = action.payload.conversation
-        // state.conversations = [...state.conversations, action.payload.conversation]
+        state.conversations = [...state.conversations, action.payload.conversation]
         state.status = "success"
       })
       .addCase(addConversation.rejected, (state, action) => {
@@ -147,6 +152,25 @@ export const conversationSlice = createSlice({
       })
       .addCase(getOneConversation.rejected, (state, action) => {
         // console.log("conversationSlice getOneConversation.rejected", action.payload);
+        state.loading = false;
+        state.success = false;
+      })
+      
+      // Update Conversation Details
+      .addCase(updateConversation.pending, (state, action) => {
+        console.log("conversationSlice updateConversation.pending", action.payload);
+        state.loading = true;
+        state.success = false;
+      })
+      .addCase(updateConversation.fulfilled, (state, action) => {
+        console.log("conversationSlice updateConversation.fulfilled", action.payload);
+        state.loading = false;
+        state.conversation = action.payload.conversation;
+        state.conversations = state.conversations.map(conversation => conversation.id === action.payload.conversation.id ? action.payload.conversation : conversation)
+        state.success = true;
+      })
+      .addCase(updateConversation.rejected, (state, action) => {
+        console.log("conversationSlice updateConversation.rejected", action.payload);
         state.loading = false;
         state.success = false;
       })
